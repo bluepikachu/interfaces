@@ -100,7 +100,7 @@ export default async function Index() {
       </div>
 
       <div className="content">
-        <h2>Introduction</h2>
+        <h2>简介</h2>
         <MDXRemote
           source={markdown.content}
           options={{
