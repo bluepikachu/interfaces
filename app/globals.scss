@@ -270,6 +270,23 @@ main {
     font-size: 13px;
   }
 
+  blockquote {
+    display: inline-block;
+    background-color: var(--gray3);
+    padding: 2px;
+    padding-right: 8px;
+    padding-left: 8px;
+    line-height: 20px;
+    border-radius: 4px;
+    font-family: var(--ff-mono);
+    color: inherit;
+    font-size: 12px;
+    scale: 0.9;
+    margin-left: 14px;
+    border-left: solid var(--gray6) 2px;
+    
+  }
+
   .footnotes {
     border-top: 1px solid var(--gray4);
     padding-top: 24px;

@@ -1,14 +1,17 @@
 # Web Interface Guidelines
 
-这份文档了总结一些构建一个良好(Web)界面的细节，但它不是完整和全面的。这是一份动态文档，根据经验定期更新。部分内容可能是主观的，但大部分网站依然适用。
+本文档翻译自 [Web Interface Guideline](https://interfaces.rauno.me/)，更新至 6 月 3 日版本。
 
+---
+这份文档了总结一些构建一个良好(Web)界面的细节，但它不是完整和全面的。这是一份动态文档，根据经验定期更新。部分内容可能是主观的，但大部分网站依然适用。
+---
 在这个文档里特意不重复提及 [WAI-ARIA](https://www.w3.org/TR/wai-aria-1.1/) 中的规范。但是可能会指出一些无障碍指南。 欢迎一起贡献。编辑[这个文件](https://github.com/raunofreiberg/interfaces/blob/main/README.md) 并提交请求。
 
-## 互动性
+## 交互
 
 - 单击输入框的 Label 后应该聚焦输入框
-- 输入框应该用 `<form>` 包裹，然后按 Enter 键提交
-- 输入框应该有一个适当的 `type` ，例如 `password`，`email`等
+- 输入框应该用 `<form>` 包裹，可以按 Enter 键提交
+- 输入框应该有一个适当的 `type` ，如 `password`，`email` 等
 - 输入框大部分时候应该禁用 `spellcheck` 和 `autocomplete` 属性
 - 输入框在适当时使用 `required` 属性来利用 HTML 表单验证
 - 输入框的前缀和后缀装饰，例如图标，应该绝对定位在带有填充的文本输入内容的顶部，而不是旁边，并需要触发输入聚焦
@@ -48,9 +51,9 @@
 ## 触摸
 
 - Hover 状态在触摸按下时不可见, 请使用 `@media (hover: hover)` [^3]
-- 输入框的字体大小不应该小于 16px，以免 iOS 在 focus 状态下自动缩放
+- 输入框的字体大小不应该小于 16px，以防止 iOS 在 focus 状态下自动缩放
 - 在可触控设备上输入框不应该自动聚焦，因为他会打开键盘并覆盖在屏幕上
-- 用 `muted` 和 `playsinline` 在 `<video />` 上来实现在 iOS 上自动播放
+- 在 `<video />` 上使用 `muted` 和 `playsinline` 来实现在 iOS 中自动播放视频
 - 对实现平移和缩放手势的自定义组件禁用 `touch-action` ，以防缩放和滚动等本机行为的干扰
 - 用 `-webkit-tap-highlight-color: rgba(0,0,0,0)` 禁用 iOS 默认的点击高亮显示，但始终将其替换为适当的替代方案
 
@@ -58,9 +61,9 @@
 
 - `filter` 和 `backdrop-filter` 的 `blur()` 数值太大时可能会影响运行速度
 - 填充矩形的缩放和模糊效果会产生条带，请用径向渐变代替
-- 谨慎启用 GPU 渲染 `transform: translateZ(0)` 对于性能不佳的动画
+- 对于性能不佳的动画，使用 `transform: translateZ(0)` 少量启用 GPU 渲染
 - 在动画持续时间内切换 `will-change` 在表现不佳的滚动动画 [^4]
-- 在 iOS 上自动播放太多视频会导致设备卡顿、暂停甚至卸载离屏视频
+- 在 iOS 上自动播放过多视频会导致设备卡顿，应暂停或停止播放屏幕外的视频
 - 使用可以直接提交到 DOM 的实时值的引用来绕过 React 的渲染生命周期 [^5]
 - [检测并适应](https://github.com/GoogleChromeLabs/react-adaptive-hooks) 用户设备的硬件和网络能力
 
@@ -70,13 +73,11 @@
 - Box shadow 应用于聚焦环, 而不是不考虑半径的轮廓 [^7]
 - 顺序列表中的可聚焦元素应可以通过 <kbd>↑</kbd> <kbd>↓</kbd> 导航
 - 顺序列表中的可聚焦元素应可以通过 <kbd>⌘</kbd> <kbd>Backspace</kbd> 删除
-- 顺序列表中的可聚焦元素应该可以删除⌘ Backspace
 - 要在按下时立即打开, 下拉菜单应该在 `mousedown` 时触发而不是 `click`
-- 要在按下时立即打开，下拉菜单应在 mousedown 上触发，而不是在 click 上触发
 - 使用带有样式标签的 SVG favicon，这样可以使用 `prefers-color-scheme` 贴近系统主题
 - 仅图标的交互元素应定义显式 `aria-label`
 - Hover 触发的 Tooltips 不应该包含交互式内容
-- 图像应使用使用 `<img>` 渲染，以便于屏幕阅读器以及易于从右键单击菜单进行复制
+- 图像应使用使用 `<img>` 渲染，以便于屏幕阅读器和使用右键菜单复制
 - 图像应始终使用呈现，以便屏幕阅读器并易于从右键单击菜单进行复制
 - 使用 HTML 构建的插图应该有一个明确的 `aria-label` 而不是向使用屏幕阅读器的人宣布原始 DOM 树
 - 渐变文本应在 `::selection` 状态取消渐变
