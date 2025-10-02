@@ -7,9 +7,13 @@ import { cache } from "react";
 import matter from "gray-matter";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { Icons, GitHub } from "./icons";
+import DocumentSwitcher from "./components/DocumentSwitcher";
 
-export default async function Index() {
-  const markdown = await getMarkdown();
+export default async function Index({ searchParams }) {
+  const params = await searchParams;
+  const currentDoc = params?.doc || 'rauno';
+  const markdown = await getMarkdown(currentDoc);
+  
   return (
     <main>
       <VerticalFade
@@ -100,6 +104,7 @@ export default async function Index() {
       </div>
 
       <div className="content">
+        <DocumentSwitcher currentDoc={currentDoc} />
         <h2>简介</h2>
         <MDXRemote
           source={markdown.content}
@@ -144,11 +149,20 @@ function Line({ variant, direction, ...props }) {
 
 ///////////////////////////////////////////////////////////////////
 
-const getMarkdown = cache(async () => {
-  const filePath = path.join(process.cwd(), "README.md");
+const getMarkdown = cache(async (docName = 'rauno') => {
+  // 映射文档 ID 到实际文件名
+  const fileMap = {
+    'rauno': 'rauno.md',
+    'vercel-design': 'vercel-design.md'
+  };
+  
+  const fileName = fileMap[docName] || fileMap['rauno'];
+  const filePath = path.join(process.cwd(), "docs", fileName);
   const file = await fs.readFile(filePath, "utf8");
   return matter(file);
 });
+
+
 
 const mdxComponents = {
   h2: (props) => {

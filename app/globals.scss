@@ -1,15 +1,15 @@
 @font-face {
-  font-family: 'X';
+  font-family: "X";
   font-weight: 400;
   font-display: swap;
-  src: url(/X-Regular.woff2) format('woff2');
+  src: url(/X-Regular.woff2) format("woff2");
 }
 
 @font-face {
-  font-family: 'X';
+  font-family: "X";
   font-weight: 500;
   font-display: swap;
-  src: url(/X-Medium.woff2) format('woff2');
+  src: url(/X-Medium.woff2) format("woff2");
 }
 
 *,
@@ -21,9 +21,9 @@
 }
 
 :root {
-  --ff-sans: "X", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  --ff-mono: 'Menlo', monospace;
+  --ff-sans: "X", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --ff-mono: "Menlo", monospace;
   //
   --cyan: hsl(180, 100%, 50%);
   //
@@ -43,7 +43,7 @@
   --grayA2: hsl(0 0% 0% / 0.027);
   //
   --focus-color: dodgerblue;
-  --focus-shadow: 0 0 0 2px var(--gray1), 0 0 0 4px var(--focus-color)
+  --focus-shadow: 0 0 0 2px var(--gray1), 0 0 0 4px var(--focus-color);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -111,7 +111,7 @@ main {
 
 .content {
   --p: 32px;
-  background: #FFF;
+  background: #fff;
   position: relative;
   transform: translateZ(0);
   box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.12);
@@ -173,7 +173,6 @@ main {
     margin: 0;
     padding: 0;
     list-style: none;
-
 
     li {
       color: rgb(58, 58, 58);
@@ -248,7 +247,8 @@ main {
     border: 0;
   }
 
-  code, kbd {
+  code,
+  kbd {
     display: inline-block;
     background-color: var(--gray3);
     padding-left: 4px;
@@ -284,7 +284,6 @@ main {
     scale: 0.9;
     margin-left: 14px;
     border-left: solid var(--gray6) 2px;
-    
   }
 
   .footnotes {
@@ -401,7 +400,7 @@ main {
   &[data-direction="vertical"] {
     width: 1px;
     height: 500vw;
-    background: linear-gradient(to bottom, var(--cyan) 0%, transparent 100%),
+    background: linear-gradient(to bottom, var(--cyan) 0%, transparent 100%);
   }
 }
 
@@ -427,4 +426,68 @@ main {
     padding-left: 8px;
     padding-right: 8px;
   }
+}
+
+// Document Switcher Styles
+.document-switcher {
+  padding-bottom: 24px;
+
+  .switcher-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .switcher-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border: 1px solid var(--gray6);
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: var(--ff-sans);
+    text-align: center;
+    min-width: 120px;
+
+    &:hover {
+      border-color: var(--gray8);
+      background: var(--gray3);
+    }
+
+    &.active {
+      border-color: black;
+      background: var(--gray1);
+      box-shadow: 0 0 0 1px black;
+    }
+
+    &.loading {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    .button-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray12);
+      line-height: 1.2;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      &:hover {
+        background: var(--gray4);
+      }
+
+      &.active {
+        background: var(--gray2);
+      }
+    }
+  }
+
 }
